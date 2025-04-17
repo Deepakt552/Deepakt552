@@ -1,0 +1,663 @@
+/* Custom styles to enhance Tailwind CSS */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Full page layout with depth */
+body {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  overflow-x: hidden;
+}
+
+/* Glass morphism effect for sections */
+section, footer {
+  position: relative;
+  overflow: hidden;
+}
+
+section::before, footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: -1;
+}
+
+/* Enhanced animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(79, 209, 197, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(79, 209, 197, 0.6); }
+}
+
+section {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Enhanced circuit canvas */
+#global-circuit-canvas {
+  opacity: 0.2;
+  filter: blur(0.5px);
+  transition: opacity 0.5s ease;
+}
+
+body:hover #global-circuit-canvas {
+  opacity: 0.35;
+}
+
+/* Image glow effect */
+.relative.mx-auto.w-64.h-64.md\:w-80.md\:h-80.rounded-full {
+  animation: pulseGlow 4s infinite ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+/* Circuit overlay with higher contrast */
+#circuit-canvas {
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+/* Typing cursor animation */
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  background-color: #4fd1c5;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Tech background floating icons */
+.tech-icon {
+  position: absolute;
+  opacity: 0.15;
+  filter: blur(1px);
+  z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+/* Enhanced hover effects for elements */
+a, button {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+a:hover, button:hover {
+  transform: translateY(-2px);
+}
+
+a:active, button:active {
+  transform: translateY(1px);
+}
+
+/* Data path effect for links */
+a:hover::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #4fd1c5, transparent);
+  animation: dataFlow 1.5s linear infinite;
+}
+
+@keyframes dataFlow {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Custom scrollbar with circuit theme */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-left: 1px solid rgba(79, 209, 197, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #38b2ac;
+  border-radius: 5px;
+  border: 2px solid #1e293b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4fd1c5;
+}
+
+/* Rest of your existing CSS */
+/* Hover effects for skill cards */
+.bg-slate-800.p-6.rounded-lg {
+  transition: all 0.3s ease;
+}
+
+.bg-slate-800.p-6.rounded-lg:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px -5px rgba(0, 224, 216, 0.2);
+}
+
+/* Project card modern hover effects */
+.bg-slate-900.rounded-lg.overflow-hidden.shadow-lg {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bg-slate-900.rounded-lg.overflow-hidden.shadow-lg:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(79, 209, 197, 0.3);
+}
+
+.bg-slate-900.rounded-lg.overflow-hidden.shadow-lg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 50%, rgba(79, 209, 197, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-slate-900.rounded-lg.overflow-hidden.shadow-lg:hover::before {
+  opacity: 1;
+}
+
+.bg-slate-900.rounded-lg.overflow-hidden.shadow-lg img {
+  transition: transform 0.8s ease;
+}
+
+.bg-slate-900.rounded-lg.overflow-hidden.shadow-lg:hover img {
+  transform: scale(1.05);
+}
+
+/* Modern, subtle text shadow on headings */
+h1, h2, h3 {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+h2 .text-teal-400, h1 {
+  position: relative;
+  display: inline-block;
+}
+
+h2 .text-teal-400::after, h1::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4fd1c5, transparent);
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(90deg, #4fd1c5, #38b2ac);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Focus styles for form elements */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #4fd1c5;
+  box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.2);
+}
+
+/* Custom selection color */
+::selection {
+  background-color: #4fd1c5;
+  color: #fff;
+}
+
+/* Button hover effects */
+.bg-teal-500 {
+  transition: all 0.3s ease;
+}
+
+.bg-teal-500:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 209, 197, 0.3);
+}
+
+/* Progress bars for skills (optional usage) */
+.progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background-color: #1e293b;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4fd1c5, #38b2ac);
+  border-radius: 4px;
+}
+
+/* Typed text animation (for use with JS) */
+.typed-cursor {
+  opacity: 1;
+  animation: typedjsBlink 0.7s infinite;
+}
+
+@keyframes typedjsBlink {
+  50% { opacity: 0.0; }
+}
+
+/* Image hover effects */
+.project-image {
+  transition: all 0.5s ease;
+}
+
+.project-image:hover {
+  transform: scale(1.05);
+}
+
+/* Nav link active state */
+.nav-active {
+  color: #4fd1c5;
+  position: relative;
+}
+
+.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #4fd1c5;
+}
+
+/* Custom animation for footer social icons */
+footer .hover\:text-teal-400 {
+  transition: all 0.3s ease;
+}
+
+footer .hover\:text-teal-400:hover {
+  transform: translateY(-5px);
+  color: #4fd1c5;
+  text-shadow: 0 0 10px rgba(79, 209, 197, 0.7);
+}
+
+/* Modern Skills Section Styles */
+.skill-filter {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-filter::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #4fd1c5;
+  transition: width 0.3s ease;
+}
+
+.skill-filter.active::before,
+.skill-filter:hover::before {
+  width: 100%;
+}
+
+.skill-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Progress bar animation */
+.bg-gradient-to-r {
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Skill icon pulse effect */
+.skill-card .text-4xl {
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Skill level badge glow */
+.bg-teal-900\/50 {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-teal-900\/50::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(79, 209, 197, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.5);
+  animation: badgeGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Card hover effect */
+.skill-card:hover .bg-slate-800\/80 {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px -5px rgba(79, 209, 197, 0.2);
+}
+
+/* Hover effect for dot markers */
+.skill-card:hover .text-teal-400 {
+  animation: markerPulse 1s ease infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Skill category filter styles */
+.skill-filter {
+  border: 1px solid #334155;
+}
+
+.skill-filter.active {
+  box-shadow: 0 0 15px rgba(79, 209, 197, 0.3);
+}
+
+/* Enhanced card styles with backdrop filter */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+/* Skill item list styles */
+.text-gray-400.text-sm.space-y-2 li {
+  transition: all 0.3s ease;
+}
+
+.text-gray-400.text-sm.space-y-2 li:hover {
+  transform: translateX(5px);
+  color: #e2e8f0;
+}
+
+/* Fade-in animation for each skill card */
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modern Projects Section Animations */
+.project-card {
+  will-change: transform;
+  transition: all 0.5s cubic-bezier(0.21, 1.02, 0.73, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.3), 
+              0 0 0 1px rgba(79, 209, 197, 0.1), 
+              0 0 20px 5px rgba(79, 209, 197, 0.1);
+  z-index: 10;
+}
+
+.project-image {
+  will-change: transform;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.1);
+}
+
+.tech-tag {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.tech-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(79, 209, 197, 0.2), transparent);
+  transition: all 0.7s ease;
+}
+
+.project-card:hover .tech-tag::before {
+  left: 100%;
+}
+
+.project-title {
+  position: relative;
+  display: inline-block;
+}
+
+.project-title::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(90deg, #4fd1c5, transparent);
+  transition: width 0.4s ease;
+}
+
+.project-card:hover .project-title::after {
+  width: 100%;
+}
+
+.project-link {
+  position: relative;
+}
+
+.project-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #4fd1c5;
+  transition: width 0.3s ease;
+}
+
+.project-link:hover::before {
+  width: 100%;
+}
+
+.project-intro {
+  position: relative;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards 0.3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Staggered loading animation for project cards */
+.project-card:nth-child(1) {
+  opacity: 0;
+  animation: fadeInCard 0.8s ease-out forwards 0.2s;
+}
+
+.project-card:nth-child(2) {
+  opacity: 0;
+  animation: fadeInCard 0.8s ease-out forwards 0.4s;
+}
+
+.project-card:nth-child(3) {
+  opacity: 0;
+  animation: fadeInCard 0.8s ease-out forwards 0.6s;
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Glowing effect for project cards on hover */
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(79, 209, 197, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transform: scale(0.8);
+  z-index: -1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Particles Container */
+#particles-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.3;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.glow {
+  filter: drop-shadow(0 0 8px rgba(56, 178, 172, 0.6));
+}
+
+/* Enhanced hover effects */
+.project-card:hover {
+  box-shadow: 0 0 25px rgba(45, 212, 191, 0.25);
+  transform: translateY(-10px) scale(1.01);
+  z-index: 20;
+}
+
+.project-card:hover .glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(45, 212, 191, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(45, 212, 191, .8));
+  }
+  100% {
+    filter: drop-shadow(0 0 5px rgba(45, 212, 191, 0.6));
+  }
+}
+
+/* Animation for the section title */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Scroll reveal animation classes */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+} 
