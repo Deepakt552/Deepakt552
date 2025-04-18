@@ -503,27 +503,75 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Handle contact form submission
+    // Contact Form Submission Handler
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+            // Get form data
+            const formData = new FormData(contactForm);
             
-            // Here you would typically send the form data to a server
-            // For now, we'll just log it and show a success message
-            console.log('Form submitted:', { name, email, subject, message });
+            // Create loading indicator
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
             
-            // Show success message (you can customize this)
-            alert('Thanks for your message! I will get back to you soon.');
-            
-            // Reset form
-            contactForm.reset();
+            // Send data via AJAX
+            fetch('process_form.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Reset button
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                
+                // Show success/error message
+                const messageElement = document.createElement('div');
+                messageElement.className = data.success ? 
+                    'mt-4 p-3 bg-teal-900/50 text-teal-300 rounded-md text-center' : 
+                    'mt-4 p-3 bg-red-900/50 text-red-300 rounded-md text-center';
+                messageElement.textContent = data.message || (data.success ? 'Message sent successfully!' : 'Failed to send message.');
+                
+                // Add message to form
+                if (contactForm.querySelector('.form-message')) {
+                    contactForm.querySelector('.form-message').remove();
+                }
+                messageElement.classList.add('form-message');
+                contactForm.appendChild(messageElement);
+                
+                // Reset form on success
+                if (data.success) {
+                    contactForm.reset();
+                    
+                    // Remove message after 5 seconds
+                    setTimeout(() => {
+                        if (messageElement.parentNode) {
+                            messageElement.remove();
+                        }
+                    }, 5000);
+                }
+            })
+            .catch(error => {
+                // Reset button
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                
+                // Show error message
+                const messageElement = document.createElement('div');
+                messageElement.className = 'mt-4 p-3 bg-red-900/50 text-red-300 rounded-md text-center form-message';
+                messageElement.textContent = 'An error occurred. Please try again later.';
+                
+                if (contactForm.querySelector('.form-message')) {
+                    contactForm.querySelector('.form-message').remove();
+                }
+                contactForm.appendChild(messageElement);
+                
+                console.error('Error:', error);
+            });
         });
     }
 
