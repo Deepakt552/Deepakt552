@@ -1,9 +1,4 @@
 <?php
-// Import PHPMailer classes into the global namespace
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
@@ -12,56 +7,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subject = htmlspecialchars($_POST['subject']);
     $message = htmlspecialchars($_POST['message']);
     
-    // Path to PHPMailer autoload.php from Composer
-    require 'vendor/autoload.php';
+    // Email details
+    $to = "deepakt552@gmail.com";
+    $email_subject = "Contact Form: $subject";
     
-    // Create a new PHPMailer instance
-    $mail = new PHPMailer(true);
+    // Prepare email body HTML
+    $email_body = "
+    <html>
+    <head>
+        <title>New Contact Form Submission</title>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            h2 { color: #2c7a7b; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+            .info { margin-bottom: 20px; }
+            .label { font-weight: bold; }
+            .message { background-color: #f9f9f9; padding: 15px; border-left: 4px solid #2c7a7b; }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <h2>New Contact Form Submission</h2>
+            <div class='info'>
+                <p><span class='label'>Name:</span> $name</p>
+                <p><span class='label'>Email:</span> $email</p>
+                <p><span class='label'>Subject:</span> $subject</p>
+                <p><span class='label'>Message:</span></p>
+                <div class='message'>$message</div>
+            </div>
+        </div>
+    </body>
+    </html>
+    ";
     
-    try {
-        // Server settings
-        $mail->isSMTP();                                      // Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                 // Gmail SMTP server
-        $mail->SMTPAuth   = true;                             // Enable SMTP authentication
-        $mail->Username   = 'hanutechx@gmail.com';           // SMTP username (your Gmail)
-        $mail->Password   = 'vasiqobaqqmessoy';              // SMTP password (use app password, not regular password)
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;   // Enable TLS encryption
-        $mail->Port       = 587;                              // TCP port to connect to
+    // Create email headers
+    $headers = "From: $email" . "\r\n";
+    $headers .= "Reply-To: $email" . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    
+    // Set additional mail parameters (can help with deliverability)
+    $additional_params = "-f deepakt552@gmail.com";
+    
+    // Attempt to send email
+    $success = mail($to, $email_subject, $email_body, $headers, $additional_params);
+    
+    // Return JSON response
+    if ($success) {
+        echo json_encode([
+            "success" => true, 
+            "message" => "Message sent successfully! I'll get back to you soon."
+        ]);
+    } else {
+        // Log error for debugging
+        error_log("Mail sending failed. To: $to, Subject: $email_subject");
         
-        // Recipients
-        $mail->setFrom('hanutechx@gmail.com', 'Portfolio Contact Form');
-        $mail->addAddress('deepakt552@gmail.com');           // Add recipient
-        $mail->addReplyTo($email, $name);                    // Add reply-to address
-        
-        // Content
-        $mail->isHTML(true);                                 // Set email format to HTML
-        $mail->Subject = "Contact Form: $subject";
-        
-        // Email body
-        $html_body = "
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> $name</p>
-        <p><strong>Email:</strong> $email</p>
-        <p><strong>Subject:</strong> $subject</p>
-        <p><strong>Message:</strong></p>
-        <p>$message</p>
-        ";
-        
-        $text_body = "You have received a new message from your website contact form.\n\n";
-        $text_body .= "Name: $name\n";
-        $text_body .= "Email: $email\n";
-        $text_body .= "Subject: $subject\n";
-        $text_body .= "Message:\n$message\n";
-        
-        $mail->Body    = $html_body;
-        $mail->AltBody = $text_body;
-        
-        // Send the email
-        $mail->send();
-        echo json_encode(["success" => true, "message" => "Message sent successfully"]);
-    } catch (Exception $e) {
-        echo json_encode(["success" => false, "message" => "Failed to send message. Error: {$mail->ErrorInfo}"]);
+        echo json_encode([
+            "success" => false, 
+            "message" => "Failed to send message. Please try contacting me directly at deepakt552@gmail.com"
+        ]);
     }
+    
     exit;
 }
 ?> 
