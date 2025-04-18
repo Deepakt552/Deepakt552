@@ -422,6 +422,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Get form data
             const formData = new FormData(contactForm);
+            const formDataObj = {};
+            formData.forEach((value, key) => {
+                formDataObj[key] = value;
+            });
             
             // Create loading indicator
             const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -429,12 +433,55 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Send data via AJAX
+            // Check if we're in a local development environment
+            const isLocalDev = window.location.hostname === '127.0.0.1' || 
+                               window.location.hostname === 'localhost';
+            
+            if (isLocalDev) {
+                // In local development, simulate success after a short delay
+                setTimeout(() => {
+                    console.log('Development mode: Form data that would be sent:', formDataObj);
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                    
+                    // Show success message for local development
+                    const messageElement = document.createElement('div');
+                    messageElement.className = 'mt-4 p-3 bg-teal-900/50 text-teal-300 rounded-md text-center';
+                    messageElement.textContent = 'Development mode: Message would be sent in production environment';
+                    
+                    if (contactForm.querySelector('.form-message')) {
+                        contactForm.querySelector('.form-message').remove();
+                    }
+                    messageElement.classList.add('form-message');
+                    contactForm.appendChild(messageElement);
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Remove message after 5 seconds
+                    setTimeout(() => {
+                        if (messageElement.parentNode) {
+                            messageElement.remove();
+                        }
+                    }, 5000);
+                }, 1500);
+                
+                return;
+            }
+            
+            // If in production environment, send data via AJAX
             fetch('process_form.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 // Reset button
                 submitBtn.innerHTML = originalBtnText;
@@ -467,6 +514,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .catch(error => {
+                console.error('Error:', error);
+                
                 // Reset button
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
@@ -474,14 +523,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show error message
                 const messageElement = document.createElement('div');
                 messageElement.className = 'mt-4 p-3 bg-red-900/50 text-red-300 rounded-md text-center form-message';
-                messageElement.textContent = 'An error occurred. Please try again later.';
+                messageElement.textContent = 'An error occurred. Please email me directly at Deepakt552@gmail.com';
                 
                 if (contactForm.querySelector('.form-message')) {
                     contactForm.querySelector('.form-message').remove();
                 }
                 contactForm.appendChild(messageElement);
-                
-                console.error('Error:', error);
             });
         });
     }

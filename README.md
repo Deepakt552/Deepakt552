@@ -70,6 +70,50 @@ A professional website for an assisted living facility showcasing their services
 
 ⚡ Full Stack Web Developer | React.js Developer | Laravel Expert | MERN Stack Developer | WordPress Developer | Inertia.js Specialist
 
+# Local Development and Contact Form Setup
+
+## Local Development Testing
+
+When developing locally, the contact form is set up to work in a simulation mode:
+
+1. The form will not actually send emails when testing on localhost or 127.0.0.1
+2. Instead, it will simulate a successful submission and show a "Development mode" message
+3. The form data will be logged to the console for verification
+
+## Production Deployment Instructions
+
+To make the contact form work properly on a production server:
+
+1. Upload all files to a web server that supports PHP
+2. Ensure the `process_form.php` file is in the root directory alongside your HTML files
+3. The PHP mail() function must be enabled on your hosting server
+
+## Troubleshooting the Contact Form
+
+If you're experiencing issues with the contact form:
+
+### For 405 Method Not Allowed Error:
+- This typically occurs when testing locally without a proper PHP server
+- Solution: Use a proper PHP server like XAMPP, WAMP, or MAMP for local testing
+- Alternatively, deploy to a real web hosting service
+
+### For Email Sending Issues:
+- Check if PHP's mail() function is enabled on your server
+- Some hosting providers may require specific email configurations
+- You can modify `process_form.php` to use SMTP if needed (instructions in file)
+
+### If Using Shared Hosting:
+- Contact your hosting provider to ensure PHP mail is properly configured
+- Some hosts restrict email sending to prevent spam
+
+## Testing in Production Environment
+
+Once deployed to a production server:
+1. Fill out the contact form completely
+2. Submit the form
+3. Check your email (deepakt552@gmail.com) for the submitted message
+4. If you don't receive the email, check server logs for PHP errors
+
 # Portfolio Contact Form Setup
 
 This document explains how to set up the contact form to send emails using PHPMailer with Gmail SMTP.
@@ -116,10 +160,4 @@ After completing these steps, your contact form should be working. To test:
 
 1. Fill out and submit the form on your website.
 2. Check your `deepakt552@gmail.com` inbox for the email.
-3. Check for any error messages on form submission if the email doesn't arrive.
-
-## Troubleshooting
-
-- If emails are not being sent, check the console for any JavaScript errors.
-- Make sure your web host supports PHP with the required extensions (openssl, etc.).
-- Some web hosts block outgoing SMTP connections - contact your hosting provider if you suspect this issue. 
+3. Check for any error messages on form submission if the email doesn't arrive. 
