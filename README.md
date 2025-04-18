@@ -68,4 +68,58 @@ A professional website for an assisted living facility showcasing their services
 
 ---
 
-⚡ Full Stack Web Developer | React.js Developer | Laravel Expert | MERN Stack Developer | WordPress Developer | Inertia.js Specialist 
+⚡ Full Stack Web Developer | React.js Developer | Laravel Expert | MERN Stack Developer | WordPress Developer | Inertia.js Specialist
+
+# Portfolio Contact Form Setup
+
+This document explains how to set up the contact form to send emails using PHPMailer with Gmail SMTP.
+
+## Installation Steps
+
+### 1. Install PHPMailer
+
+You need to install PHPMailer via Composer. If you don't have Composer installed, [download and install it first](https://getcomposer.org/download/).
+
+Then run the following command in your project root:
+
+```bash
+composer require phpmailer/phpmailer
+```
+
+This will create a `vendor` directory with all the necessary files.
+
+### 2. Create Gmail App Password
+
+For security reasons, Gmail requires using App Passwords instead of your regular password when accessing Gmail from applications:
+
+1. Go to your [Google Account](https://myaccount.google.com/).
+2. Select "Security" from the left navigation.
+3. Under "Signing in to Google," select "2-Step Verification" (enable it if not already enabled).
+4. At the bottom of the page, select "App passwords".
+5. Give your app password a name like "Portfolio Contact Form".
+6. Click "Create" and Google will generate a 16-character password.
+7. Copy this password - you'll need it for the configuration.
+
+### 3. Update SMTP Configuration
+
+Open the `process_form.php` file and update the following lines with your Gmail information:
+
+```php
+$mail->Username   = 'your-gmail@gmail.com';           // Your Gmail address
+$mail->Password   = 'your-app-password';              // The 16-character app password
+$mail->setFrom('your-gmail@gmail.com', 'Portfolio Contact Form');
+```
+
+## Testing
+
+After completing these steps, your contact form should be working. To test:
+
+1. Fill out and submit the form on your website.
+2. Check your `deepakt552@gmail.com` inbox for the email.
+3. Check for any error messages on form submission if the email doesn't arrive.
+
+## Troubleshooting
+
+- If emails are not being sent, check the console for any JavaScript errors.
+- Make sure your web host supports PHP with the required extensions (openssl, etc.).
+- Some web hosts block outgoing SMTP connections - contact your hosting provider if you suspect this issue. 

@@ -64,7 +64,6 @@
                 <div class="md:w-1/2 mb-10 md:mb-0">
                     <div class="relative mx-auto w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-teal-400 bg-slate-800">
                         <img src="Deepak tiwari.png" alt="Deepak Tiwari" class="w-full h-full object-cover">
-                        <canvas id="circuit-canvas" class="absolute inset-0 z-10 opacity-40"></canvas>
                     </div>
                 </div>
             </div>
@@ -75,29 +74,91 @@
     <section id="about" class="py-20 bg-slate-800/80 backdrop-blur-sm relative z-10">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-16">About <span class="text-teal-400">Me</span></h2>
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-                <div>
-                    <img src="https://placehold.co/600x400/1e293b/e2e8f0?text=About+Me" alt="About Deepak Tiwari" class="rounded-lg shadow-xl">
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">Full Stack Web Developer</h3>
-                    <p class="text-gray-300 mb-6">
-                        I'm a passionate full stack web developer with expertise in modern JavaScript frameworks and PHP backends. My core technical skills include React.js, Laravel, MongoDB, Express.js, and Inertia.js, allowing me to build complete web applications from front to back.
-                    </p>
-                    <p class="text-gray-300 mb-8">
-                        I specialize in creating responsive single-page applications with React.js, building robust backends with Laravel, and implementing NoSQL database solutions with MongoDB. I'm also experienced with WordPress development and version control using GitHub. When I'm not coding, you can find me exploring new technologies and contributing to open-source projects.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <p class="mb-2"><strong class="text-teal-400">Name:</strong> Deepak Tiwari</p>
-                            <p class="mb-2"><strong class="text-teal-400">Email:</strong> Deepakt552@gmail.com</p>
-                        </div>
-                        <div>
-                            <p class="mb-2"><strong class="text-teal-400">Location:</strong> India</p>
-                            <p class="mb-2"><strong class="text-teal-400">Availability:</strong> Available</p>
-                        </div>
+            
+            <div class="grid md:grid-cols-12 gap-10 items-center">
+                <!-- Image column - takes 5/12 columns on md screens -->
+                <div class="md:col-span-5 relative">
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                        <img src="about me.png" alt="About Deepak Tiwari" class="w-full rounded-2xl z-10 relative transform hover:scale-105 transition-transform duration-500">
+                        <!-- Decorative elements -->
+                        <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-teal-500/20 rounded-full blur-2xl"></div>
+                        <div class="absolute -top-6 -left-6 w-40 h-40 bg-teal-500/20 rounded-full blur-2xl"></div>
                     </div>
-                    <a href="#" class="inline-block mt-6 px-6 py-3 bg-teal-500 text-white rounded-md hover:bg-teal-600 transition-colors">Download CV</a>
+                    <!-- Experience badges -->
+                    <div class="absolute top-4 -left-4 md:-left-10 bg-slate-700/90 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-slate-600/50 transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                        <div class="text-teal-400 font-bold text-xl">3+</div>
+                        <div class="text-white text-sm">Years Experience</div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 md:-right-10 bg-slate-700/90 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-slate-600/50 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                        <div class="text-teal-400 font-bold text-xl">20+</div>
+                        <div class="text-white text-sm">Projects Completed</div>
+                    </div>
+                </div>
+                
+                <!-- Content column - takes 7/12 columns on md screens -->
+                <div class="md:col-span-7">
+                    <div class="bg-slate-700/30 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-slate-600/50">
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center">
+                            <span class="bg-teal-500/20 text-teal-400 p-2 rounded-lg mr-3">
+                                <i class="fas fa-code"></i>
+                            </span>
+                            Full Stack Web Developer
+                        </h3>
+                        
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            I'm a passionate full stack web developer with expertise in modern JavaScript frameworks and PHP backends. My core technical skills include React.js, Laravel, MongoDB, Express.js, and Inertia.js, allowing me to build complete web applications from front to back.
+                        </p>
+                        
+                        <p class="text-gray-300 mb-8 leading-relaxed">
+                            I specialize in creating responsive single-page applications with React.js, building robust backends with Laravel, and implementing NoSQL database solutions with MongoDB. I'm also experienced with WordPress development and version control using GitHub. When I'm not coding, you can find me exploring new technologies and contributing to open-source projects.
+                        </p>
+                        
+                        <!-- Info grid with improved styling -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-slate-800/80 p-4 rounded-xl flex items-start">
+                                <span class="text-teal-400 mr-3 mt-1"><i class="fas fa-user"></i></span>
+                                <div>
+                                    <h4 class="font-medium text-white">Name</h4>
+                                    <p class="text-gray-400">Deepak Tiwari</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-800/80 p-4 rounded-xl flex items-start">
+                                <span class="text-teal-400 mr-3 mt-1"><i class="fas fa-envelope"></i></span>
+                                <div>
+                                    <h4 class="font-medium text-white">Email</h4>
+                                    <p class="text-gray-400">Deepakt552@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-800/80 p-4 rounded-xl flex items-start">
+                                <span class="text-teal-400 mr-3 mt-1"><i class="fas fa-map-marker-alt"></i></span>
+                                <div>
+                                    <h4 class="font-medium text-white">Location</h4>
+                                    <p class="text-gray-400">Mumbai, India</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-800/80 p-4 rounded-xl flex items-start">
+                                <span class="text-teal-400 mr-3 mt-1"><i class="fas fa-check-circle"></i></span>
+                                <div>
+                                    <h4 class="font-medium text-white">Availability</h4>
+                                    <p class="text-gray-400">Available</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skills showcase -->
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">React.js</span>
+                            <span class="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">Laravel</span>
+                            <span class="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">MongoDB</span>
+                            <span class="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">Express.js</span>
+                            <span class="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">Inertia.js</span>
+                            <span class="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">WordPress</span>
+                        </div>
+                        
+                        <a href="#" class="inline-block px-6 py-3 bg-teal-500 text-white rounded-xl hover:bg-teal-600 transition-colors shadow-lg hover:shadow-teal-500/20 transform hover:-translate-y-1 duration-300 font-medium">
+                            <i class="fas fa-download mr-2"></i> Download CV
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
