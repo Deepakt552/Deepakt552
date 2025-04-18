@@ -900,7 +900,13 @@ if (downloadBtn) {
     downloadBtn.addEventListener('click', function(e) {
         e.preventDefault();
         // Replace with your actual resume file
-        // window.open('/path/to/your-resume.pdf', '_blank');
+         window.open('deepak.pdf', '_blank');
         alert('Resume download would be activated here. Add your resume file path to enable this feature.');
     });
-} 
+} document.addEventListener("DOMContentLoaded", function () {
+    const downloadButton = document.querySelector('a[href="Deepak.pdf"]');
+    if (downloadButton) {
+        downloadButton.removeAttribute("download"); // Remove the download attribute
+        downloadButton.setAttribute("target", "_blank"); // Open in a new tab
+    }
+});
